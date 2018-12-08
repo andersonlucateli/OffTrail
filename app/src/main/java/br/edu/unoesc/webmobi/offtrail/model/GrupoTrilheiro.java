@@ -3,8 +3,10 @@ package br.edu.unoesc.webmobi.offtrail.model;
 import com.j256.ormlite.field.DatabaseField;
 import com.j256.ormlite.table.DatabaseTable;
 
+import java.io.Serializable;
+
 @DatabaseTable
-public class Grupo_Trilheiro {
+public class GrupoTrilheiro implements Serializable {
 
     @DatabaseField(generatedId = true)
     private Integer codigo;
@@ -18,7 +20,7 @@ public class Grupo_Trilheiro {
     @DatabaseField(canBeNull = false)
     private String data;
 
-    public Grupo_Trilheiro(){
+    public GrupoTrilheiro(){
 
     }
 

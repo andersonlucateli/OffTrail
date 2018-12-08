@@ -1,10 +1,13 @@
 package br.edu.unoesc.webmobi.offtrail.model;
 
+import com.j256.ormlite.field.DataType;
 import com.j256.ormlite.field.DatabaseField;
 import com.j256.ormlite.table.DatabaseTable;
 
+import java.io.Serializable;
+
 @DatabaseTable
-public class Trilheiro {
+public class Trilheiro implements Serializable {
 
     @DatabaseField(generatedId = true)
     private Integer codigo;
@@ -18,7 +21,10 @@ public class Trilheiro {
     @DatabaseField(foreign = true, foreignColumnName = "codigo")
     private Moto moto;
 
-    public Trilheiro(){
+    @DatabaseField(dataType = DataType.BYTE_ARRAY)
+    private byte[] foto;
+
+    public Trilheiro() {
 
     }
 
@@ -52,5 +58,13 @@ public class Trilheiro {
 
     public void setMoto(Moto moto) {
         this.moto = moto;
+    }
+
+    public byte[] getFoto() {
+        return foto;
+    }
+
+    public void setFoto(byte[] foto) {
+        this.foto = foto;
     }
 }

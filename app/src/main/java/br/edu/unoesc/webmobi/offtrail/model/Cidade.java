@@ -3,8 +3,10 @@ package br.edu.unoesc.webmobi.offtrail.model;
 import com.j256.ormlite.field.DatabaseField;
 import com.j256.ormlite.table.DatabaseTable;
 
+import java.io.Serializable;
+
 @DatabaseTable
-public class Cidade {
+public class Cidade implements Serializable {
     //anota campo com chave primaria e autoencrmente
     @DatabaseField(generatedId = true)
     private Integer codigo;

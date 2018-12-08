@@ -3,8 +3,10 @@ package br.edu.unoesc.webmobi.offtrail.model;
 import com.j256.ormlite.field.DatabaseField;
 import com.j256.ormlite.table.DatabaseTable;
 
+import java.io.Serializable;
+
 @DatabaseTable // para customizar nome da tabela "(tableName = "")"
-public class Grupo {
+public class Grupo implements Serializable {
 
     @DatabaseField(generatedId = true)
     private Integer codigo;
@@ -39,5 +41,10 @@ public class Grupo {
 
     public void setCidade(Cidade cidade) {
         this.cidade = cidade;
+    }
+
+    @Override
+    public String toString() {
+        return getNome();
     }
 }

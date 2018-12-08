@@ -9,12 +9,17 @@ import android.view.Window;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import org.androidannotations.annotations.Bean;
 import org.androidannotations.annotations.EActivity;
 import org.androidannotations.annotations.Fullscreen;
 import org.androidannotations.annotations.ViewById;
 import org.androidannotations.annotations.WindowFeature;
 
+import java.sql.SQLException;
+
 import br.edu.unoesc.webmobi.offtrail.R;
+import br.edu.unoesc.webmobi.offtrail.helper.DatabaseHelper;
+import br.edu.unoesc.webmobi.offtrail.model.Usuario;
 
 @EActivity(R.layout.activity_login)
 @Fullscreen
@@ -22,6 +27,9 @@ import br.edu.unoesc.webmobi.offtrail.R;
 public class LoginActivity extends AppCompatActivity {
 
     private final String TAG = "OlaAndroid TAG";
+
+    @Bean
+    DatabaseHelper dh;
 
     @ViewById
     EditText edtLogin;
@@ -46,8 +54,6 @@ public class LoginActivity extends AppCompatActivity {
     public void login(View v) {
         //Toast.makeText(this, "Fazendo Login", Toast.LENGTH_LONG).show();
         //Log.d(TAG, "Exibindo mensagem Toast!");
-
-
 /*
         //remove anotation
         EditText edtLogin = findViewById(R.id.edtLogin);
@@ -57,19 +63,29 @@ public class LoginActivity extends AppCompatActivity {
         String strLogin = edtLogin.getText().toString();
         String strSenha = edtSenha.getText().toString();
 
-        if (strLogin != null &&
-                strSenha != null &&
+
+
+        if (strLogin != null && strSenha != null &&
                 !strLogin.trim().equals("") &&
-                !strSenha.trim().equals("") &&
-                strLogin.equals("anderson") &&
-                strSenha.equals("123")) {
+                !strSenha.trim().equals("")) {
 
-            //params: de onde sai(this), para onde vai(.class)
-            Intent itPrincipal = new Intent(
-                    this, PrincipalActivity.class
-            );
-            startActivity(itPrincipal);
+            Usuario u = dh.validaLogin(strLogin, strSenha);
 
+            if (u != null){
+                //params: de onde sai(this), para onde vai(.class)
+                Intent itPrincipal = new Intent(
+                        this, PrincipalActivity_.class
+                );
+                /**
+                 * Passando valor para outras tela
+                 * utilizando HashMap(chave, valor)
+                 */
+                itPrincipal.putExtra("usuario", u);
+                startActivity(itPrincipal);
+                finish();
+            } else {
+                Toast.makeText(this, "Usuário ou senha incorretos.", Toast.LENGTH_LONG).show();
+            }
         } else {
             Toast.makeText(this, "Usuário ou senha inválidos", Toast.LENGTH_LONG).show();
             edtLogin.setText("");
