@@ -52,7 +52,7 @@ public class TrilheiroItemView extends LinearLayout {
          * todas a classes devem ter Serializable
          */
         //Toast.makeText(getContext(), "Editar: " + trilheiro.getNome(), Toast.LENGTH_SHORT).show();
-        //TODO: (2,50) Implementar a edição dos dados do trilheiro. OK - Falta atualizar o Spinner
+        //TODO: (2,50) Implementar a edição dos dados do trilheiro. OK
 
         Intent itCadastro = new Intent(
                 getContext(), CadastroTrilheiroActivity_.class
@@ -70,7 +70,7 @@ public class TrilheiroItemView extends LinearLayout {
         dialog.setNegativeButton("Não", null);
         dialog.setPositiveButton("Sim", new DialogInterface.OnClickListener() {
 
-            //TODO: (2,50) Implementar a exclusão do trilheiro e grupo trilheiro. OK - Ver atualização itens
+            //TODO: (2,50) Implementar a exclusão do trilheiro e grupo trilheiro. OK
 
             @Override
             public void onClick(DialogInterface dialog, int which) {

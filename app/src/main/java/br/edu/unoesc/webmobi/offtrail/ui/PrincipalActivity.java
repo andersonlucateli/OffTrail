@@ -232,7 +232,7 @@ public class PrincipalActivity extends AppCompatActivity
             consultarCidadesPorNome();
 
         } else if (id == R.id.nav_preferencias) {
-            //TODO: (0,75) Implementar tela para salvar preferências. OK - Não volta depois de fechar
+            //TODO: (0,75) Implementar tela para salvar preferências. OK
 
             Intent itConfig = new Intent(
                     PrincipalActivity.this, ConfigActivity_.class
